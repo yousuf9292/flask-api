@@ -10,12 +10,12 @@ app = Flask(__name__)
 
 
 jwt = JWTManager(app)
-mongo = PyMongo(app)
-db = mongo.db
+
 
 app.config["MONGO_URI"]=os.environ['MONGO']
 app.config["JWT_SECRET_KEY"]=os.environ['SECRET']
-
+mongo = PyMongo(app)
+db = mongo.db
 
 @app.route("/<username>/<email>/<password>",methods=['GET','POST'])
 def registered(username,email,password):
